@@ -6,40 +6,41 @@
 /*   By: bishopvk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 22:30:10 by bishopvk          #+#    #+#             */
-/*   Updated: 2023/12/11 14:23:02 by bishopvk         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:08:14 by lojimene         ###   ########.es       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
+
+int strlen2(char *src)
+{
+  int i;
+
+  i = 0;
+  while (src[i])
+    i++;
+  return (i);
+}
 
 char	*ft_strdup(char *src)
 {
-	size_t	len;
 	char	*dest;
-	size_t	i;
+  char  *principio;
 
-	len = 0;
-	dest = (char *)malloc(len + 1);
-	i = 0;
-	if (src == NULL)
-		return (NULL);
-	while (src[len] != '\0')
-		len++;
+	dest = (char *)malloc(strlen2(src) + 1);
 	if (dest == NULL)
-	{
-		//fprintf(stderr, "Error: No se pudo asignar memoria\n");
 		exit(EXIT_FAILURE);
-	}
-	while (i <= len)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	return (dest);
+  principio = dest;
+	if (*src == '\0')
+		return (NULL);
+	while (*src != '\0')
+		*dest++ = *src++;
+  *dest = '\0';
+	return (principio);
 }
 
-/*int	main(void)
+int	main(void)
 {
 	char	*original = "Hello, World!";
 	char	*duplicate = ft_strdup(original);
@@ -53,4 +54,4 @@ char	*ft_strdup(char *src)
 	else
 		fprintf(stderr, "Error: No se pudo duplicar la cadena\n");
 	return (0);
-}*/
+}
