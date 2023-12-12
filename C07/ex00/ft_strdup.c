@@ -6,41 +6,41 @@
 /*   By: bishopvk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 22:30:10 by bishopvk          #+#    #+#             */
-/*   Updated: 2023/12/12 14:08:14 by lojimene         ###   ########.es       */
+/*   Updated: 2023/12/12 18:16:42 by bishopvk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+//#include <stdio.h>
 #include <stdlib.h>
 
-int strlen2(char *src)
+int	ft_strlen(char *src)
 {
-  int i;
+	int	i;
 
-  i = 0;
-  while (src[i])
-    i++;
-  return (i);
+	i = 0;
+	while (src[i])
+		i++;
+	return (i);
 }
 
 char	*ft_strdup(char *src)
 {
 	char	*dest;
-  char  *principio;
+	char	*principio;
 
-	dest = (char *)malloc(strlen2(src) + 1);
-	if (dest == NULL)
-		exit(EXIT_FAILURE);
-  principio = dest;
-	if (*src == '\0')
+	if (src == NULL)
 		return (NULL);
+	dest = (char *)malloc(ft_strlen(src) + 1);
+	if (dest == NULL)
+		exit (EXIT_FAILURE);
+	principio = dest;
 	while (*src != '\0')
 		*dest++ = *src++;
-  *dest = '\0';
+	*dest = '\0';
 	return (principio);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	char	*original = "Hello, World!";
 	char	*duplicate = ft_strdup(original);
@@ -54,4 +54,4 @@ int	main(void)
 	else
 		fprintf(stderr, "Error: No se pudo duplicar la cadena\n");
 	return (0);
-}
+}*/
