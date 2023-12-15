@@ -6,7 +6,7 @@
 /*   By: danjimen <danjimen@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 20:21:21 by danjimen          #+#    #+#             */
-/*   Updated: 2023/11/26 19:00:29 by danjimen         ###   ########.fr       */
+/*   Updated: 2023/12/15 10:37:48 by bishopvk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 	while (dest[i] != '\0')
 		i++;
 	dest_lenght = i;
+	if (size <= dest_lenght)
+        return src_length + size;
 	j = 0;
 	while (src[j] != '\0' && j < size - dest_lenght - 1)
 	{
