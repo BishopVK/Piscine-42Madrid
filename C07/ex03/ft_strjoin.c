@@ -6,7 +6,7 @@
 /*   By: bishopvk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:02:06 by bishopvk          #+#    #+#             */
-/*   Updated: 2023/12/15 17:58:28 by bishopvk         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:49:44 by bishopvk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,22 @@ int	ft_strlen(int size, char **strs, char *sep)
 	while (strs[i])
 	{
 		j = 0;
-		while (strs[i][j])
+		while (strs[i][j] != '\0')
 		{
+			fprintf(stderr, "%c %d %d\n", strs[i][j], i, j);
 			count++;
 			j++;
 		}
 		i++;
 	}
 	i = 0;
-	while (sep[i])
+	if (sep[0] != '\0')
 	{
-		count += size - 1;
-		i++;
+		while (sep[i])
+		{
+			count += size - 1;
+			i++;
+		}
 	}
 	return (count);
 }
@@ -46,16 +50,17 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	int		i;
 	int		j;
 	int		k;
+	int		l;
 	int		count;
 
 	count = ft_strlen(size, strs, sep);
-	printf("Count: %i\n", count);
+	//printf("Count: %i\n", count);
 	if (size == 0)
 	{
 		str = (char *)malloc(1);
 		if (str == NULL)
 			exit (EXIT_FAILURE);
-		str = '\0';
+		str[0] = '\0';
 		return (str);
 	}
 	str = (char *)malloc((count + 1) * sizeof(char));
@@ -69,19 +74,22 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		while (strs[j][k])
 			str[i++] = strs[j][k++];
 		if (j < size - 1)
-			str[i++] = *sep;
+		{
+			l = 0;
+			while (sep[l])
+			str[i++] = sep[l++];
+		}
 		j++;
 	}
 	str[i] = '\0';
 	return (str);
-
 }
 
 int	main(void)
 {
 	int		size = 4;
-	char	*strs[] = {"Hola,", "soy", "Daniel", "Jiménez"};
-	char	*sep = " ";
+	char	*strs[] = {"Hola,", "soy", "Daniel", "Jimenez"};
+	char	*sep = "-*";
 	char	*resultado = ft_strjoin(size, strs, sep);
 
 	printf("Resultado: %s\n", resultado);
